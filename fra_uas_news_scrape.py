@@ -93,8 +93,6 @@ def scrape_website_and_save_document_to_file(url):
 
             for image_caption in image_div.find_all("img"):
                 image_captions_text += "\n" + image_caption.get("data-caption")
-
-            print(f"Image data captions: {image_captions_text}")
         except:
             image_captions_text = ""
             print(f"Article has no images: {url}")
@@ -113,7 +111,9 @@ def scrape_website_and_save_document_to_file(url):
         document = headline + "\n" + content_div_text + image_captions_text
 
         write_string_to_file(
-            "documents/" + remove_special_characters(document.split("\n", 1)[0]),
+            "documents/"
+            + remove_special_characters(document.split("\n", 1)[0])
+            + ".txt",
             document,
         )
 
